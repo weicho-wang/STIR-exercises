@@ -58,6 +58,6 @@ fi
 
 #### divide by norm to be consistent with measured data
 # STIR scatter simulation produces "normalised" data, so we undo that here
-stir_divide -s ${output}.hs ${output}_pre_norm.hs ${norm}
+stir_math -s --mult --power -1 ${output}.hs ${output}_pre_norm.hs ${norm}
 
 echo "Done creating simulated scatter data"

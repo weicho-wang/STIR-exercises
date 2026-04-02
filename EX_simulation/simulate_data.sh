@@ -82,7 +82,7 @@ stir_math -s --including-first \
 # factor (e.g. for calibration) so this division will actually scale the randoms as well.
 # In particular, in the current script, it will divide the randoms by 3.4!
 # Ideally we'd fix this but this is supposed to be a "simple" simulation :-;
-stir_divide -s --accumulate \
+stir_math -s --accumulate --mult --power -1 \
          my_randoms.hs my_norm.hs
 if [ $? -ne 0 ]; then 
   echo "ERROR running stir_math"; exit 1; 
@@ -114,7 +114,7 @@ fi
 
 echo "===  create prompts"
 stir_math -s my_prompts.hs my_line_integrals.hs my_additive_sinogram.hs 
-stir_divide -s --accumulate  my_prompts.hs my_multfactors.hs
+stir_math -s --accumulate --mult --power -1  my_prompts.hs my_multfactors.hs
 
 echo "===  create zero sinogram"
 # for convenience of the scripts

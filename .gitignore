@@ -4,3 +4,6 @@ working_folder
 #*
 .#*
 *.png
+venv-stir-exercises/
+.venv/
+venv/

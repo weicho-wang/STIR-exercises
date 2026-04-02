@@ -74,7 +74,7 @@ stir_math -s --including-first \
 # we divide by the norm here to put some efficiency pattern on the data.
 # this isn't entirely accurate as a "proper" norm contains geometric effects
 # which shouldn't be in the randoms, but this is supposed to be a "simple" simulation :-;
-stir_divide -s --accumulate \
+stir_math -s --accumulate --mult --power -1 \
          my_randoms.hs my_norm.hs  > my_stir_math_4.log 2>&1
 if [ $? -ne 0 ]; then 
   echo "ERROR running stir_math"; exit 1; 
@@ -100,7 +100,7 @@ fi
 
 echo "===  create prompts"
 stir_math -s my_prompts.hs my_line_integrals.hs my_additive_sinogram.hs   > my_stir_math_8.log 2>&1
-stir_divide -s --accumulate  my_prompts.hs my_multfactors.hs  > my_stir_math_9.log 2>&1
+stir_math -s --accumulate --mult --power -1  my_prompts.hs my_multfactors.hs  > my_stir_math_9.log 2>&1
 
 echo "===  create zero sinogram"
 # for convenience of the scripts
